@@ -1,3 +1,4 @@
+//NetworkClient.h
 #ifndef NETWORKCLIENT_H
 #define NETWORKCLIENT_H
 
@@ -33,6 +34,8 @@ private slots:
 private:
     explicit NetworkClient(QObject* parent = nullptr);
     ~NetworkClient() = default;
+    NetworkClient(const NetworkClient&) = delete;
+    NetworkClient& operator=(const NetworkClient&) = delete;
 
     QTcpSocket* m_socket;
     QMutex m_mutex;

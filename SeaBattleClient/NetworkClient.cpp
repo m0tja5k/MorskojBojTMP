@@ -1,3 +1,4 @@
+//NetworkClient.cpp
 #include "NetworkClient.h"
 
 NetworkClient& NetworkClient::instance()
@@ -24,23 +25,22 @@ NetworkClient::NetworkClient(QObject* parent)
     m_reconnectTimer.setInterval(5000);
 }
 
-void NetworkClient::connectToServer(const QString& host, quint16 port)
-{
+void NetworkClient::connectToServer(const QString& host, quint16 port) {
     QMutexLocker locker(&m_mutex);
-    if(m_socket->state() == QAbstractSocket::ConnectedState) return;
-
+    if (m_socket->state() != QAbstractSocket::UnconnectedState) {
+        m_socket->abort(); // Сбросить состояние перед подключением
+    }
     qDebug() << "Connecting to" << host << ":" << port;
     m_socket->connectToHost(host, port);
 }
 
-void NetworkClient::disconnectFromServer()
-{
+void NetworkClient::disconnectFromServer() {
     QMutexLocker locker(&m_mutex);
-    m_reconnectTimer.stop();
-    if(m_socket->state() == QAbstractSocket::ConnectedState)
-    {
-        m_socket->disconnectFromHost();
+    m_reconnectTimer.stop(); // Остановить таймер
+    if (m_socket->state() != QAbstractSocket::UnconnectedState) {
+        m_socket->abort(); // Принудительно закрыть сокет
     }
+    qDebug() << "-----------------------";
 }
 
 void NetworkClient::sendMessage(const QString& message)
@@ -66,10 +66,9 @@ void NetworkClient::onConnected()
     emit connectionChanged(true);
 }
 
-void NetworkClient::onDisconnected()
-{
+void NetworkClient::onDisconnected() {
     qDebug() << "Disconnected from server!";
-    m_reconnectTimer.start();
+    // Убрать m_reconnectTimer.start();
     emit connectionChanged(false);
 }
 
