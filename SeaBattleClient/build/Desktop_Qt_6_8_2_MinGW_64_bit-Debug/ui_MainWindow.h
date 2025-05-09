@@ -30,12 +30,14 @@ public:
     QWidget *centralwidget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
+    QLabel *nicknameLabel;
     QHBoxLayout *horizontalLayout;
     QPlainTextEdit *chatLog;
     QLineEdit *messageEdit;
     QPushButton *sendButton;
     QLabel *statusLabel;
     QPushButton *connectButton;
+    QPushButton *startButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -52,6 +54,11 @@ public:
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        nicknameLabel = new QLabel(verticalLayoutWidget);
+        nicknameLabel->setObjectName("nicknameLabel");
+
+        verticalLayout->addWidget(nicknameLabel);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
         chatLog = new QPlainTextEdit(verticalLayoutWidget);
@@ -82,6 +89,11 @@ public:
 
         verticalLayout->addWidget(connectButton);
 
+        startButton = new QPushButton(verticalLayoutWidget);
+        startButton->setObjectName("startButton");
+
+        verticalLayout->addWidget(startButton);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -99,10 +111,12 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        nicknameLabel->setText(QCoreApplication::translate("MainWindow", "nickname", nullptr));
         messageEdit->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \321\201\320\276\320\276\320\261\321\211\320\265\320\275\320\270\320\265", nullptr));
         sendButton->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\277\321\200\320\260\320\262\320\270\321\202\321\214", nullptr));
         statusLabel->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\260\321\202\321\203\321\201: \320\275\320\265 \320\277\320\276\320\264\320\272\320\273\321\216\321\207\320\265\320\275\320\276", nullptr));
         connectButton->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\264\320\272\320\273\321\216\321\207\320\270\321\202\321\214\321\201\321\217", nullptr));
+        startButton->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\260\321\200\321\202", nullptr));
     } // retranslateUi
 
 };

@@ -1,32 +1,46 @@
-//MainWindow.cpp
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "NetworkClient.h"
 #include <QPushButton>
+#include <QMessageBox>
 
-// Строка 8: Конструктор - исправлено выравнивание
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-    ui(new Ui::MainWindow) // Убедитесь, что Ui::MainWindow объявлен в ui_MainWindow.h
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
-    // Строка 10: Инициализация UI
     ui->setupUi(this);
 
-    // Строки 13-15: Подключение кнопок
-    connect(ui->connectButton, &QPushButton::clicked, // Проверьте objectName кнопки в UI
+    // Изначально кнопка старта неактивна
+    ui->startButton->setEnabled(false);
+
+    connect(ui->connectButton, &QPushButton::clicked,
             this, &MainWindow::connectButtonClicked);
     connect(ui->sendButton, &QPushButton::clicked,
             this, &MainWindow::sendButtonClicked);
+    connect(ui->startButton, &QPushButton::clicked,
+            this, &MainWindow::on_startButton_clicked);
 
-    // Подключение сигналов NetworkClient
     connect(&NetworkClient::instance(), &NetworkClient::messageReceived,
             this, &MainWindow::handleMessage);
-    connect(&NetworkClient::instance(), &NetworkClient::connectionChanged, // Исправлено имя сигнала (было connectionChanged)
+    connect(&NetworkClient::instance(), &NetworkClient::connectionChanged,
             this, &MainWindow::handleConnectionChanged);
     connect(&NetworkClient::instance(), &NetworkClient::errorOccurred,
             this, &MainWindow::handleError);
+    connect(&NetworkClient::instance(), &NetworkClient::gameReady,
+            this, [this]() { ui->startButton->setEnabled(true); });
 
     updateUI();
+}
+
+void MainWindow::setUserInfo(const QString &nickname)
+{
+    currentNickname = nickname;
+    ui->nicknameLabel->setText("Игрок: " + nickname);
+}
+
+void MainWindow::on_startButton_clicked()
+{
+    emit startGameRequested();
 }
 
 // Строка 46: Деструктор

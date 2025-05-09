@@ -25,6 +25,62 @@ NetworkClient::NetworkClient(QObject* parent)
     m_reconnectTimer.setInterval(5000);
 }
 
+void NetworkClient::registerUser(const QString &nickname, const QString &email,
+                                 const QString &password)
+{
+    QJsonObject json;
+    json["type"] = "register";
+    json["nickname"] = nickname;
+    json["email"] = email;
+    json["password"] = password;
+
+    sendMessage(QJsonDocument(json).toJson());
+}
+
+void NetworkClient::loginUser(const QString &email, const QString &password)
+{
+    QJsonObject json;
+    json["type"] = "login";
+    json["email"] = email;
+    json["password"] = password;
+
+    sendMessage(QJsonDocument(json).toJson());
+}
+
+void NetworkClient::onReadyRead()
+{
+    const QByteArray data = m_socket->readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    if (doc.isNull()) {
+        emit messageReceived(QString::fromUtf8(data));
+        return;
+    }
+
+    QJsonObject json = doc.object();
+    QString type = json["type"].toString();
+
+    if (type == "register") {
+        if (json["success"].toBool()) {
+            emit registrationSuccess();
+        } else {
+            emit registrationFailed(json["reason"].toString());
+        }
+    }
+    else if (type == "login") {
+        if (json["success"].toBool()) {
+            emit loginSuccess(json["nickname"].toString());
+        } else {
+            emit loginFailed(json["reason"].toString());
+        }
+    }
+    else if (type == "game_ready") {
+        emit gameReady();
+    }
+    else {
+        emit messageReceived(QString::fromUtf8(data));
+    }
+}
+
 void NetworkClient::connectToServer(const QString& host, quint16 port) {
     QMutexLocker locker(&m_mutex);
     if (m_socket->state() != QAbstractSocket::UnconnectedState) {

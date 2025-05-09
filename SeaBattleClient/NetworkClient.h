@@ -14,11 +14,21 @@ class NetworkClient : public QObject
 public:
     static NetworkClient& instance();
 
-    void connectToServer(const QString& host = "127.0.0.1", quint16 port = 8888);
+    void connectToServer(const QString& host = "127.0.0.1", quint16 port = 33333);
     void disconnectFromServer();
     void sendMessage(const QString& message);
 
     bool isConnected() const;
+
+    void registerUser(const QString &nickname, const QString &email,
+                      const QString &password);
+    void loginUser(const QString &email, const QString &password);
+
+    void registrationSuccess();
+    void registrationFailed(const QString &reason);
+    void loginSuccess(const QString &nickname);
+    void loginFailed(const QString &reason);
+    void gameReady();
 
 signals:
     void messageReceived(const QString&);

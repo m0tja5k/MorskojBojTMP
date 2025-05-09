@@ -15,7 +15,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void setUserInfo(const QString &nickname);
+
+signals:
+    void startGameRequested();
+
 private slots:
+    void on_startButton_clicked();
     void connectButtonClicked();
     void sendButtonClicked();
     void handleMessage(const QString&);
@@ -25,4 +31,5 @@ private slots:
 private:
     Ui::MainWindow *ui; // Исправлено: Uri → Ui, добавлен указатель *
     void updateUI();
+    QString currentNickname;
 };
