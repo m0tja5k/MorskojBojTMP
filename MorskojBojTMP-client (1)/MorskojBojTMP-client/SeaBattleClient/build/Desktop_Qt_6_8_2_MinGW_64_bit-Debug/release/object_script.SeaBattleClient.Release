@@ -1,0 +1,13 @@
+release/AuthWindow.o
+release/GameWindow.o
+release/RegisterWindow.o
+release/WindowManager.o
+release/main.o
+release/NetworkClient.o
+release/MainWindow.o
+release/moc_AuthWindow.o
+release/moc_GameWindow.o
+release/moc_NetworkClient.o
+release/moc_MainWindow.o
+release/moc_RegisterWindow.o
+release/moc_WindowManager.o
