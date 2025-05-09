@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::setUserInfo(const QString &nickname)
 {
-    currentNickname = nickname;
+    NetworkClient::instance().setCurrentNickname(nickname);
     ui->nicknameLabel->setText("Игрок: " + nickname);
 }
 

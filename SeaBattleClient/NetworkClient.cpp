@@ -1,5 +1,7 @@
 //NetworkClient.cpp
 #include "NetworkClient.h"
+#include <QJsonObject>
+#include <QJsonDocument>
 
 NetworkClient& NetworkClient::instance()
 {
@@ -37,11 +39,11 @@ void NetworkClient::registerUser(const QString &nickname, const QString &email,
     sendMessage(QJsonDocument(json).toJson());
 }
 
-void NetworkClient::loginUser(const QString &email, const QString &password)
+void NetworkClient::loginUser(const QString &nickname, const QString &password)
 {
     QJsonObject json;
     json["type"] = "login";
-    json["email"] = email;
+    json["nickname"] = nickname;
     json["password"] = password;
 
     sendMessage(QJsonDocument(json).toJson());
@@ -67,7 +69,7 @@ void NetworkClient::onReadyRead()
         }
     }
     else if (type == "login") {
-        if (json["success"].toBool()) {
+        if (json["status"] == "success") {
             emit loginSuccess(json["nickname"].toString());
         } else {
             emit loginFailed(json["reason"].toString());
@@ -80,6 +82,7 @@ void NetworkClient::onReadyRead()
         emit messageReceived(QString::fromUtf8(data));
     }
 }
+
 
 void NetworkClient::connectToServer(const QString& host, quint16 port) {
     QMutexLocker locker(&m_mutex);
@@ -128,15 +131,27 @@ void NetworkClient::onDisconnected() {
     emit connectionChanged(false);
 }
 
-void NetworkClient::onReadyRead()
-{
-    const QByteArray data = m_socket->readAll();
-    emit messageReceived(QString::fromUtf8(data));
-}
 
 void NetworkClient::onError(QAbstractSocket::SocketError socketError)
 {
     Q_UNUSED(socketError)
     emit errorOccurred(m_socket->errorString());
     disconnectFromServer();
+}
+
+void NetworkClient::setCurrentNickname(const QString& nickname)
+{
+    currentNickname = nickname;
+}
+
+void NetworkClient::requestStartGame()
+{
+    if(isConnected()) {
+        QJsonObject json;
+        json["type"] = "start_game";
+        json["nickname"] = currentNickname; // Предполагая, что вы храните ник
+
+        sendMessage(QJsonDocument(json).toJson());
+        qDebug() << "Start game requested for player:" << currentNickname;
+    }
 }

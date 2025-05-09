@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>654</width>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>280</x>
      <y>10</y>
-     <width>131</width>
+     <width>101</width>
      <height>41</height>
     </rect>
    </property>
@@ -30,29 +30,18 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>110</y>
-     <width>160</width>
-     <height>80</height>
+     <y>100</y>
+     <width>291</width>
+     <height>231</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout"/>
   </widget>
-  <widget class="QWidget" name="gridLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>110</y>
-     <width>160</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout_2"/>
-  </widget>
   <widget class="QLabel" name="statusLabel">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>70</y>
+     <x>280</x>
+     <y>50</y>
      <width>101</width>
      <height>20</height>
     </rect>
@@ -64,15 +53,26 @@
   <widget class="QPushButton" name="surrenderButton">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>210</y>
-     <width>93</width>
-     <height>29</height>
+     <x>270</x>
+     <y>350</y>
+     <width>111</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string>Сдаться</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>100</y>
+     <width>291</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2"/>
   </widget>
  </widget>
  <resources/>

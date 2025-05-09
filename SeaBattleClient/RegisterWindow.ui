@@ -44,7 +44,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="emailEdit">
       <property name="placeholderText">
        <string>email</string>
       </property>

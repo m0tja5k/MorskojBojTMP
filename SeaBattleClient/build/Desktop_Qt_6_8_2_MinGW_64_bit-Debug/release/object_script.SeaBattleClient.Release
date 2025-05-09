@@ -5,10 +5,6 @@ release/WindowManager.o
 release/main.o
 release/NetworkClient.o
 release/MainWindow.o
-release/AuthWindow.o
-release/RegisterWindow.o
-release/WindowManager.o
-release/GameWindow.o
 release/moc_AuthWindow.o
 release/moc_GameWindow.o
 release/moc_NetworkClient.o

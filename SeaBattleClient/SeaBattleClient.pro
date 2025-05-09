@@ -10,11 +10,7 @@ SOURCES += \
     WindowManager.cpp \
     main.cpp \
     NetworkClient.cpp \
-    MainWindow.cpp \
-    AuthWindow.cpp \
-    RegisterWindow.cpp \
-    WindowManager.cpp \
-    GameWindow.cpp
+    MainWindow.cpp
 
 HEADERS += \
     AuthWindow.h \
@@ -23,16 +19,11 @@ HEADERS += \
     MainWindow.h \
     AuthWindow.h \
     RegisterWindow.h \
-    RegisterWindow.h \
-    WindowManager.h \
-    WindowManager.h \
-    GameWindow.h
+    WindowManager.h
 
 FORMS += \
     AuthWindow.ui \
     GameWindow.ui \
     MainWindow.ui \
     AuthWindow.ui \
-    RegisterWindow.ui \
-    RegisterWindow.ui \
-    GameWindow.ui
+    RegisterWindow.ui

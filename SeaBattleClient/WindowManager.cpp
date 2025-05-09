@@ -19,10 +19,18 @@ WindowManager::WindowManager(QObject *parent) : QObject(parent),
             });
 
     connect(registerWindow, &RegisterWindow::backToAuthRequested, this, &WindowManager::showAuthWindow);
-
+    connect(mainWindow, &MainWindow::startGameRequested, &NetworkClient::instance(), &NetworkClient::requestStartGame);
     connect(&NetworkClient::instance(), &NetworkClient::registrationSuccess, this, &WindowManager::showAuthWindow);
     connect(&NetworkClient::instance(), &NetworkClient::loginSuccess, this, &WindowManager::showMainWindow);
     connect(&NetworkClient::instance(), &NetworkClient::gameReady, this, &WindowManager::showGameWindow);
+}
+
+WindowManager::~WindowManager() {
+    // Освобождаем ресурсы
+    delete authWindow;
+    delete registerWindow;
+    delete mainWindow;
+    delete gameWindow;
 }
 
 void WindowManager::showAuthWindow()

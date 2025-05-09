@@ -42,6 +42,14 @@ static constexpr auto qt_meta_stringdata_ZN13NetworkClientE = QtMocHelpers::stri
     "",
     "connectionChanged",
     "errorOccurred",
+    "registrationSuccess",
+    "registrationFailed",
+    "reason",
+    "loginSuccess",
+    "nickname",
+    "loginFailed",
+    "gameReady",
+    "requestStartGame",
     "onConnected",
     "onDisconnected",
     "onReadyRead",
@@ -59,34 +67,46 @@ Q_CONSTINIT static const uint qt_meta_data_ZN13NetworkClientE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       3,       // signalCount
+       8,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   56,    2, 0x06,    1 /* Public */,
-       3,    1,   59,    2, 0x06,    3 /* Public */,
-       4,    1,   62,    2, 0x06,    5 /* Public */,
+       1,    1,   92,    2, 0x06,    1 /* Public */,
+       3,    1,   95,    2, 0x06,    3 /* Public */,
+       4,    1,   98,    2, 0x06,    5 /* Public */,
+       5,    0,  101,    2, 0x06,    7 /* Public */,
+       6,    1,  102,    2, 0x06,    8 /* Public */,
+       8,    1,  105,    2, 0x06,   10 /* Public */,
+      10,    1,  108,    2, 0x06,   12 /* Public */,
+      11,    0,  111,    2, 0x06,   14 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,   65,    2, 0x08,    7 /* Private */,
-       6,    0,   66,    2, 0x08,    8 /* Private */,
-       7,    0,   67,    2, 0x08,    9 /* Private */,
-       8,    1,   68,    2, 0x08,   10 /* Private */,
+      12,    0,  112,    2, 0x0a,   15 /* Public */,
+      13,    0,  113,    2, 0x08,   16 /* Private */,
+      14,    0,  114,    2, 0x08,   17 /* Private */,
+      15,    0,  115,    2, 0x08,   18 /* Private */,
+      16,    1,  116,    2, 0x08,   19 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void, QMetaType::QString,    2,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    9,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 9,   10,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 17,   18,
 
        0        // eod
 };
@@ -109,6 +129,21 @@ Q_CONSTINIT const QMetaObject NetworkClient::staticMetaObject = { {
         // method 'errorOccurred'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'registrationSuccess'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'registrationFailed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'loginSuccess'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'loginFailed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'gameReady'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'requestStartGame'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onConnected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onDisconnected'
@@ -130,17 +165,23 @@ void NetworkClient::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->messageReceived((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 1: _t->connectionChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 2: _t->errorOccurred((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 3: _t->onConnected(); break;
-        case 4: _t->onDisconnected(); break;
-        case 5: _t->onReadyRead(); break;
-        case 6: _t->onError((*reinterpret_cast< std::add_pointer_t<QAbstractSocket::SocketError>>(_a[1]))); break;
+        case 3: _t->registrationSuccess(); break;
+        case 4: _t->registrationFailed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 5: _t->loginSuccess((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 6: _t->loginFailed((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 7: _t->gameReady(); break;
+        case 8: _t->requestStartGame(); break;
+        case 9: _t->onConnected(); break;
+        case 10: _t->onDisconnected(); break;
+        case 11: _t->onReadyRead(); break;
+        case 12: _t->onError((*reinterpret_cast< std::add_pointer_t<QAbstractSocket::SocketError>>(_a[1]))); break;
         default: ;
         }
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 6:
+        case 12:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -172,6 +213,41 @@ void NetworkClient::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
                 return;
             }
         }
+        {
+            using _q_method_type = void (NetworkClient::*)();
+            if (_q_method_type _q_method = &NetworkClient::registrationSuccess; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _q_method_type = void (NetworkClient::*)(const QString & );
+            if (_q_method_type _q_method = &NetworkClient::registrationFailed; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 4;
+                return;
+            }
+        }
+        {
+            using _q_method_type = void (NetworkClient::*)(const QString & );
+            if (_q_method_type _q_method = &NetworkClient::loginSuccess; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 5;
+                return;
+            }
+        }
+        {
+            using _q_method_type = void (NetworkClient::*)(const QString & );
+            if (_q_method_type _q_method = &NetworkClient::loginFailed; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 6;
+                return;
+            }
+        }
+        {
+            using _q_method_type = void (NetworkClient::*)();
+            if (_q_method_type _q_method = &NetworkClient::gameReady; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 7;
+                return;
+            }
+        }
     }
 }
 
@@ -194,14 +270,14 @@ int NetworkClient::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 13;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 13;
     }
     return _id;
 }
@@ -225,5 +301,38 @@ void NetworkClient::errorOccurred(const QString & _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void NetworkClient::registrationSuccess()
+{
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+}
+
+// SIGNAL 4
+void NetworkClient::registrationFailed(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
+}
+
+// SIGNAL 5
+void NetworkClient::loginSuccess(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
+}
+
+// SIGNAL 6
+void NetworkClient::loginFailed(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
+}
+
+// SIGNAL 7
+void NetworkClient::gameReady()
+{
+    QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }
 QT_WARNING_POP

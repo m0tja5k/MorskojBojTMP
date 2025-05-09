@@ -1,13 +1,14 @@
 #ifndef GAMEWINDOW_H
 #define GAMEWINDOW_H
 
-#include <QMainWindow>
+#include "qmainwindow.h"
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GameWindow; }
 QT_END_NAMESPACE
 
-class GameWindow : public QMainWindow
+class GameWindow : public QWidget
 {
     Q_OBJECT
 

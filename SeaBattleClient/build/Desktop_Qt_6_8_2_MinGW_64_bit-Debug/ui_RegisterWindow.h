@@ -26,7 +26,7 @@ public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QLineEdit *nicknameEdit;
-    QLineEdit *lineEdit_2;
+    QLineEdit *emailEdit;
     QLineEdit *passwordEdit;
     QLineEdit *confirmPasswordEdit;
     QPushButton *registerButton;
@@ -51,10 +51,10 @@ public:
 
         verticalLayout->addWidget(nicknameEdit);
 
-        lineEdit_2 = new QLineEdit(verticalLayoutWidget);
-        lineEdit_2->setObjectName("lineEdit_2");
+        emailEdit = new QLineEdit(verticalLayoutWidget);
+        emailEdit->setObjectName("emailEdit");
 
-        verticalLayout->addWidget(lineEdit_2);
+        verticalLayout->addWidget(emailEdit);
 
         passwordEdit = new QLineEdit(verticalLayoutWidget);
         passwordEdit->setObjectName("passwordEdit");
@@ -88,7 +88,7 @@ public:
         RegisterWindow->setWindowTitle(QCoreApplication::translate("RegisterWindow", "Form", nullptr));
         label->setText(QCoreApplication::translate("RegisterWindow", "\320\240\320\265\320\263\320\270\321\201\321\202\321\200\320\260\321\206\320\270\321\217", nullptr));
         nicknameEdit->setPlaceholderText(QCoreApplication::translate("RegisterWindow", "nickname", nullptr));
-        lineEdit_2->setPlaceholderText(QCoreApplication::translate("RegisterWindow", "email", nullptr));
+        emailEdit->setPlaceholderText(QCoreApplication::translate("RegisterWindow", "email", nullptr));
         passwordEdit->setPlaceholderText(QCoreApplication::translate("RegisterWindow", "password", nullptr));
         confirmPasswordEdit->setPlaceholderText(QCoreApplication::translate("RegisterWindow", "confirm password", nullptr));
         registerButton->setText(QCoreApplication::translate("RegisterWindow", "\320\227\320\260\321\200\320\265\320\263\320\265\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214\321\201\321\217", nullptr));

@@ -1,4 +1,3 @@
-//NetworkClient.h
 #ifndef NETWORKCLIENT_H
 #define NETWORKCLIENT_H
 
@@ -7,11 +6,14 @@
 #include <QTimer>
 #include <QMutex>
 #include <QDebug>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 class NetworkClient : public QObject
 {
     Q_OBJECT
 public:
+    void setCurrentNickname(const QString& nickname);
     static NetworkClient& instance();
 
     void connectToServer(const QString& host = "127.0.0.1", quint16 port = 33333);
@@ -24,16 +26,18 @@ public:
                       const QString &password);
     void loginUser(const QString &email, const QString &password);
 
+signals:
+    void messageReceived(const QString&);
+    void connectionChanged(bool);
+    void errorOccurred(const QString&);
     void registrationSuccess();
     void registrationFailed(const QString &reason);
     void loginSuccess(const QString &nickname);
     void loginFailed(const QString &reason);
     void gameReady();
 
-signals:
-    void messageReceived(const QString&);
-    void connectionChanged(bool); // Было connectionChanged → исправлено на connectionChanged
-    void errorOccurred(const QString&);
+public slots:  // Изменено с protected на public
+    void requestStartGame();
 
 private slots:
     void onConnected();
@@ -50,6 +54,7 @@ private:
     QTcpSocket* m_socket;
     QMutex m_mutex;
     QTimer m_reconnectTimer;
+    QString currentNickname;  // Добавьте это поле
 };
 
 #endif // NETWORKCLIENT_H
