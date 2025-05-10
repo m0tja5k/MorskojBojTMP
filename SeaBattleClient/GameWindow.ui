@@ -1,79 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>GameWindow</class>
- <widget class="QWidget" name="GameWindow">
+ <widget class="QMainWindow" name="GameWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>654</width>
-    <height>518</height>
+    <width>700</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Морской бой</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>10</y>
-     <width>101</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Морской бой</string>
-   </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="statusLabel">
+      <property name="text">
+       <string>Расставьте корабли</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="fieldLayout">
+      <item>
+       <widget class="QWidget" name="playerFieldWidget">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>300</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="enemyFieldWidget">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>300</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="buttonLayout">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="placeShipsButton">
+        <property name="text">
+         <string>Расставить корабли</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="readyButton">
+        <property name="text">
+         <string>Готов к бою</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
-  <widget class="QWidget" name="gridLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>100</y>
-     <width>291</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout"/>
-  </widget>
-  <widget class="QLabel" name="statusLabel">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>50</y>
-     <width>101</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>статус игры</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="surrenderButton">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>350</y>
-     <width>111</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Сдаться</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="gridLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>100</y>
-     <width>291</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout_2"/>
-  </widget>
+  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

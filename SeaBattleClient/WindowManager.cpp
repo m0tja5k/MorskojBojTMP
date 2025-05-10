@@ -52,7 +52,9 @@ void WindowManager::showMainWindow(const QString &nickname)
 {
     if (!mainWindow) {
         mainWindow = new MainWindow();
-        connect(mainWindow, &MainWindow::startGameRequested, &NetworkClient::instance(), &NetworkClient::requestStartGame);
+        connect(mainWindow, &MainWindow::startGameRequested, [this]() {
+            showGameWindow();  // Переход сразу в игру
+        });
     }
 
     authWindow->hide();

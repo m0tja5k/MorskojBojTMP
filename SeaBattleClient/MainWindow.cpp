@@ -10,8 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Изначально кнопка старта неактивна
-    ui->startButton->setEnabled(false);
+    ui->startButton->setEnabled(true);  // ← Основное изменение
+    ui->startButton->setText("Начать игру");
 
     connect(ui->connectButton, &QPushButton::clicked,
             this, &MainWindow::connectButtonClicked);
